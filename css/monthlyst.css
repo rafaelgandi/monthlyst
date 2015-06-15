@@ -1,0 +1,70 @@
+
+body {
+  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+}
+
+#core_toolbar {
+	right: 0px;
+	left: -10px;
+	color: rgb(255, 255, 255);
+	fill: rgb(255, 255, 255);
+	top: 0px;
+	position: static;
+	background-color: rgb(128, 0, 255);
+  }
+  #input {
+	padding: 15px;
+	left: 30px;
+	top: 80px;
+	position: absolute;
+  }
+
+paper-checkbox {
+  padding: 20px 20px 20px 0;
+}
+
+section {
+  width: 300px;
+}
+
+paper-checkbox.blue::shadow #ink[checked] {
+  color: #BBDEFB;
+}
+
+paper-checkbox.blue::shadow #checkbox.checked {
+  background-color: #2196F3;
+  border-color: #2196F3;
+}
+
+.paper-font-body2 {
+	padding: 10px;
+}
+
+#content {
+	padding: 10px;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+core-header-panel {
+	background-color: #fff;
+}
+
+.m_monthly_list_item {
+	padding: 30px;
+}
+
+#content paper-fab {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+	background-color: #ff4081;
+}
+    
