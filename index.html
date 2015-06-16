@@ -24,6 +24,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  <link rel="import" href="components/elements.html">
  <link rel="stylesheet" href="css/monthlyst.css">
  <script src="js/zepto.min.js"></script>
+ <script src="js/zepto/fx.js"></script>
+ <script src="js/zepto/fx_methods.js"></script>
+ <script src="js/zepto/touch.js"></script>
+ <script src="js/zepto/data.js"></script>
+ <script>window.z = Zepto;</script>
+ <script src="js/page.js"></script>
 </head>
 <body unresolved class="fullbleed layout vertical">
 	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
@@ -39,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				</paper-toolbar>
 				<!-- Drawer Content -->
 				<paper-menu>
-					<paper-item role="menuitem" class="center">About</paper-item>
+					<paper-item role="menuitem">About</paper-item>
 					<paper-item role="menuitem">Logs</paper-item>
 					<paper-item role="menuitem">Backup</paper-item>
 					<paper-item role="menuitem">Restore</paper-item>
@@ -57,61 +63,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				<span class="flex">Monthlyst</span>
 				<paper-icon-button icon="more-vert"></paper-icon-button>			
 			</paper-toolbar>
-			
-			<div id="content" class="flex">
-				<paper-button >button</paper-button>
-				<paper-button class="colored">colored</paper-button>
-				<paper-button disabled>disabled</paper-button>
-				<paper-button noink>noink</paper-button>
+			<div id="content" class="flex">			
+				<!-- <section id="monthlyst_list" class="flex"> -->
+					<!-- <paper-button >button</paper-button>
+					<paper-button class="colored">colored</paper-button>
+					<paper-button disabled>disabled</paper-button>
+					<paper-button noink>noink</paper-button> -->
+					
+					<div id="m_month_nav_con" class="flex">
+						<paper-icon-button icon="chevron-left" style="float: left"></paper-icon-button>
+						<paper-icon-button icon="chevron-right" style="float: right"></paper-icon-button>
+					</div>
+					<br style="clear:both;">
+					<!-- Monthly list items -->
+					<paper-material elevation="2">
+						<p class="m_monthly_list_item">
+							This is another card.
+							<paper-ripple></paper-ripple>
+						</p>					
+					</paper-material>
+					
+					<paper-material elevation="2">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="2">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<!-- Add circle button -->				
+					<paper-fab icon="add" id="m_add_item_floating_button" role="button"></paper-fab>
+				<!-- </section> -->
 				
-				<div id="m_month_nav_con" class="flex">
-					<paper-icon-button icon="chevron-left" style="float: left"></paper-icon-button>
-					<paper-icon-button icon="chevron-right" style="float: right"></paper-icon-button>
-				</div>
-				<br style="clear:both;">
-			
-			
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
 				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<paper-material class="card" z="1">
-					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-material>
-				
-				<!-- Add circle button -->		
-				<paper-fab icon="add" id="m_add_item_floating_button" role="button"></paper-fab>
 				<!-- toast element -->
 				<paper-toast text="Some message" id="m-toast"></paper-toast>
 			</div>	
 		</paper-header-panel>
 	</paper-drawer-panel>
 	<script>
-	var z = Zepto;
 	z(function ($) {
 		//alert(z('paper-material').length);
 		var c = 0;
@@ -120,18 +130,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			z(this).attr('data-m-c', c);
 			c++;
 		})
+		
 		.on('tap', function () {
 			//alert(z(this).attr('data-m-c'));
 		});
 		
 		z('#m_add_item_floating_button').on('tap', function () {
-			alert('Add button');
+			//alert('Add button');
+		})
+		.on('doubleTap', function () {
+			alert(11);
 		});
 		
-		z('paper-material').on('tap', function () {
+		z('paper-material .m_monthly_list_item')
+		.append('<paper-ripple></paper-ripple>') // add  ripples to cards
+		.on('tap', function () {
 			z('#m-toast').attr('text', z(this).text().trim())[0].show();
 			//this.show();
+		})
+		// See: https://www.polymer-project.org/0.5/docs/polymer/touch.html
+		.on('longTap', function () {
+			alert(11);
 		});
+		
+		
 	});
 	</script>
 </body>

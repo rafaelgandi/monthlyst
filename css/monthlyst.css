@@ -67,4 +67,12 @@ paper-header-panel {
 	right: 20px;
 	background-color: #ff4081;
 }
+
+#m_month_nav_con paper-icon-button {
+	padding: 20px;
+}
+
+#m_add_item_floating_button {
+	/* box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2); */
+}
     
