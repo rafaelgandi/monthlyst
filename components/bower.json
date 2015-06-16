@@ -1,0 +1,26 @@
+{
+  "name": "polymer",
+  "version": "0.0.0",
+  "authors": [
+    "Raffy <rafael@sushidigital.com.au>"
+  ],
+  "license": "MIT",
+  "homepage": "rafaelgandi.tk",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "core-elements": "Polymer/core-elements#~0.5.6"
+  },
+  "resolutions": {
+    "webcomponentsjs": "0.7.3",
+    "polymer": "^1.0.0",
+    "marked-element": "^1.0.0",
+    "web-animations-js": "^2.0.0"
+  }
+}

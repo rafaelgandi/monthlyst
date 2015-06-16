@@ -32,9 +32,9 @@
 	<!-- See: https://github.com/apache/cordova-plugin-statusbar/tree/bdbaf129595c4a4e3d957a1bc218d05dc5f82a9e -->
 	<preference name="StatusBarBackgroundColor" value="#80C801" />
 	
-	<!-- Splash screen -->
+	<!-- Splash screen
 	<gap:splash src="splash/splashscreen.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="splash/splashscreen.png" gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="splash/splashscreen.png" gap:platform="android" gap:density="mdpi" /> -->
 	
 	<!-- Must manually include the core plugins. Required for phonegap 3.x.x upgrade -->
 	<!-- See: http://docs.build.phonegap.com/en_US/introduction_upgrading_2_9_to_3_1.md.html#Upgrading%20from%202.9%20to%203.x -->

@@ -51,7 +51,7 @@ paper-checkbox.blue::shadow #checkbox.checked {
 	overflow-x: hidden;
 }
 
-core-header-panel {
+paper-header-panel {
 	background-color: #fff;
 }
 
@@ -63,8 +63,8 @@ core-header-panel {
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	position: fixed;
-	bottom: 16px;
-	right: 16px;
+	bottom: 20px;
+	right: 20px;
 	background-color: #ff4081;
 }
     

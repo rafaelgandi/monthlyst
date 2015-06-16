@@ -23,81 +23,117 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="theme-color" content="#303F9F">
  <link rel="import" href="components/elements.html">
  <link rel="stylesheet" href="css/monthlyst.css">
- 
+ <script src="js/zepto.min.js"></script>
 </head>
 <body unresolved class="fullbleed layout vertical">
 	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
-	<core-drawer-panel id="paperDrawerPanel">	
-		<core-header-panel drawer>
+	<paper-drawer-panel id="paperDrawerPanel">	
+		<paper-header-panel drawer>
 			<div drawer>
 				<!-- Drawer Toolbar -->
-				<core-toolbar id="drawerToolbar">
-				  <span class="paper-font-title">Menu</span>
-				</core-toolbar>
+				<paper-toolbar id="drawerToolbar">
+				  <span class="paper-font-title">
+					Menu
+					<paper-ripple></paper-ripple>
+				  </span>
+				</paper-toolbar>
 				<!-- Drawer Content -->
-				<paper-item>About</paper-item>
-				<paper-item>Logs</paper-item>
-				<paper-item>Backup</paper-item>
-				<paper-item>Restore</paper-item>
+				<paper-menu>
+					<paper-item role="menuitem" class="center">About</paper-item>
+					<paper-item role="menuitem">Logs</paper-item>
+					<paper-item role="menuitem">Backup</paper-item>
+					<paper-item role="menuitem">Restore</paper-item>
+				<paper-menu>
 			</div>	
-		</core-header-panel>
+		</paper-header-panel>
 		
 		<!-- ================================================================================== -->
 		
-		<core-header-panel main>
+		<paper-header-panel main>
 			<!-- Main Header -->
-			<core-toolbar id="core_toolbar">
-				<paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
-				<span flex>Monthlyst</span>
-				<paper-icon-button icon="more-vert"></paper-icon-button>
-				
-			</core-toolbar>
+			<paper-toolbar id="core_toolbar">
+				<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+				<!-- <paper-icon-button icon="menu" ></paper-icon-button>  -->
+				<span class="flex">Monthlyst</span>
+				<paper-icon-button icon="more-vert"></paper-icon-button>			
+			</paper-toolbar>
 			
-			<div id="content" flex>
-				<paper-button>button</paper-button>
+			<div id="content" class="flex">
+				<paper-button >button</paper-button>
 				<paper-button class="colored">colored</paper-button>
 				<paper-button disabled>disabled</paper-button>
 				<paper-button noink>noink</paper-button>
+				
+				<div id="m_month_nav_con" class="flex">
+					<paper-icon-button icon="chevron-left" style="float: left"></paper-icon-button>
+					<paper-icon-button icon="chevron-right" style="float: right"></paper-icon-button>
+				</div>
+				<br style="clear:both;">
 			
 			
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-				<paper-shadow class="card" z="1">
+				<paper-material class="card" z="1">
 					<p class="m_monthly_list_item">This is another card.</p>
-				</paper-shadow>
+				</paper-material>
 				
-						
+				<!-- Add circle button -->		
 				<paper-fab icon="add" id="m_add_item_floating_button" role="button"></paper-fab>
-			
+				<!-- toast element -->
+				<paper-toast text="Some message" id="m-toast"></paper-toast>
 			</div>	
-		</core-header-panel>
-	</core-drawer-panel>	
+		</paper-header-panel>
+	</paper-drawer-panel>
+	<script>
+	var z = Zepto;
+	z(function ($) {
+		//alert(z('paper-material').length);
+		var c = 0;
+		z('paper-button')
+		.each(function () {
+			z(this).attr('data-m-c', c);
+			c++;
+		})
+		.on('tap', function () {
+			//alert(z(this).attr('data-m-c'));
+		});
+		
+		z('#m_add_item_floating_button').on('tap', function () {
+			alert('Add button');
+		});
+		
+		z('paper-material').on('tap', function () {
+			z('#m-toast').attr('text', z(this).text().trim())[0].show();
+			//this.show();
+		});
+	});
+	</script>
 </body>
 
 </html>
