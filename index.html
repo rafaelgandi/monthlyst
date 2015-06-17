@@ -148,6 +148,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				
 				<!-- toast element -->
 				<paper-toast text="Some message" id="m-toast"></paper-toast>
+				
+				<paper-dialog id="m_context_dialog">
+					<!--  <paper-menu>
+						<paper-item><span class="center">List</span></paper-item>
+						<paper-item>About</paper-item>
+						<paper-item>Logs</paper-item>
+						<paper-item>Backup</paper-item>
+						<paper-item>Restore</paper-item>
+						
+					</paper-menu>-->
+					<div class="m_context_div" data-m-value="Edit">
+						<paper-button>
+							<iron-icon icon="create"></iron-icon> Edit
+						</paper-button>
+					</div>
+					<div class="m_context_div" data-m-value="Delete">
+						<paper-button>
+							<iron-icon icon="delete"></iron-icon> Delete
+						</paper-button>
+					</div>
+				</paper-dialog>
+				
 			</div>	
 		</paper-header-panel>
 	</paper-drawer-panel>
@@ -184,14 +206,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				alert(11);
 			});
 			
-			z('#long_tap').on(touch.longTap, function () {
+			z('#long_tap').on(touch.tap, function () {
 				this.style.backgroundColor = '#ccc';
+				document.getElementById('m_context_dialog').open();
 			});
 			
 			// Sometimes paper-drawer-toggle does not work in phonegap //
 			z('[m-paper-drawer-toggle]').on(touch.tap, function () {			
 				document.getElementById('paperDrawerPanel').togglePanel();
-			});	
+			});
+			
+			z('.m_context_div').on(touch.longTap, function () {
+				z('#m-toast').attr('text', this.getAttribute('data-m-value'))[0].show();
+			});
 		});
 		
 		navigator.require('js/Routes.js', function () {

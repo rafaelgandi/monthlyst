@@ -67,4 +67,19 @@ section.route_page {
 section.route_active_page {
 	display: block !important;
 }
-    
+
+#m_context_dialog.paper-dialog-0 {
+	overflow: hidden !important;
+}
+
+#m_context_dialog paper-button {
+	padding: 0;
+	margin: 0;
+	width: 300px;
+	padding: 16px;	
+}
+
+#m_context_dialog .m_context_div {
+	padding: 0;
+	margin: 0;
+}
