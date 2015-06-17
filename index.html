@@ -23,13 +23,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="theme-color" content="#303F9F">
  <link rel="import" href="components/elements.html">
  <link rel="stylesheet" href="css/monthlyst.css">
- <script src="js/zepto.min.js"></script>
- <script src="js/zepto/fx.js"></script>
- <script src="js/zepto/fx_methods.js"></script>
- <script src="js/zepto/touch.js"></script>
- <script src="js/zepto/data.js"></script>
+ <script src="js/lib/zepto.min.js"></script>
+ <!-- <script src="js/lib/zepto/fx.js"></script>
+ <script src="js/lib/zepto/fx_methods.js"></script>
+ <script src="js/lib/zepto/touch.js"></script>
+ <script src="js/lib/zepto/data.js"></script> -->
  <script>window.z = Zepto;</script>
- <script src="js/page.js"></script>
+ <script src="js/lib/mobile.famd.js"></script>
 </head>
 <body unresolved class="fullbleed layout vertical">
 	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
@@ -45,8 +45,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				</paper-toolbar>
 				<!-- Drawer Content -->
 				<paper-menu>
-					<paper-item role="menuitem">About</paper-item>
-					<paper-item role="menuitem">Logs</paper-item>
+					<paper-item role="menuitem" data-route="monthly_item_list_page">List</paper-item>
+					<paper-item role="menuitem" data-route="about_page">About</paper-item>
+					<paper-item role="menuitem" data-route="logs_page" data-route_data="this is logs data">Logs</paper-item>
 					<paper-item role="menuitem">Backup</paper-item>
 					<paper-item role="menuitem">Restore</paper-item>
 				<paper-menu>
@@ -57,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		
 		<paper-header-panel main>
 			<!-- Main Header -->
-			<paper-toolbar id="core_toolbar">
+			<paper-toolbar id="main_toolbar">
 				<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
 				<!-- <paper-icon-button icon="menu" ></paper-icon-button>  -->
 				<span class="flex">Monthlyst</span>
@@ -68,11 +69,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					<!-- <paper-button >button</paper-button>
 					<paper-button class="colored">colored</paper-button>
 					<paper-button disabled>disabled</paper-button>
-					<paper-button noink>noink</paper-button> -->
+					<paper-button noink>noink</paper-button> -->					
+				
+				<!-- List Page -->				
+				<section id="monthly_item_list_page" class="route_page route_active_page">
+				
+					<div id="long_tap" style="padding: 10px;border: 1px solid red;" class="">hello</div>
 					
-					<div id="m_month_nav_con" class="flex">
+					<div id="m_month_nav_con" class="flex">						
 						<paper-icon-button icon="chevron-left" style="float: left"></paper-icon-button>
-						<paper-icon-button icon="chevron-right" style="float: right"></paper-icon-button>
+						<paper-icon-button icon="chevron-right" style="float: right"></paper-icon-button>						
 					</div>
 					<br style="clear:both;">
 					<!-- Monthly list items -->
@@ -112,9 +118,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					</paper-material>
 					
 					<!-- Add circle button -->				
-					<paper-fab icon="add" id="m_add_item_floating_button" role="button"></paper-fab>
-				<!-- </section> -->
+					<paper-fab icon="add" id="m_add_item_floating_button" role="button" data-route="new_item_page"></paper-fab>
+				</section>
 				
+				<!-- About Page -->
+				<section id="about_page" class="route_page">
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">
+							This is the about page.
+						</p>
+					</paper-material>
+				</section>
+				
+				<!-- New Item Page -->
+				<section id="new_item_page" class="route_page">
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">
+							<paper-input label="Monthly item to do"></paper-input>
+						</p>
+					</paper-material>
+				</section>
+				
+				<!-- Logs Page -->
+				<section id="logs_page" class="route_page">
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">This is the logs page. Logs data = "<span id="log_data_con"></span>"</p>
+					</paper-material>
+				</section>
 				
 				<!-- toast element -->
 				<paper-toast text="Some message" id="m-toast"></paper-toast>
@@ -123,36 +153,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	</paper-drawer-panel>
 	<script>
 	z(function ($) {
-		//alert(z('paper-material').length);
-		var c = 0;
-		z('paper-button')
-		.each(function () {
-			z(this).attr('data-m-c', c);
-			c++;
-		})
-		
-		.on('tap', function () {
-			//alert(z(this).attr('data-m-c'));
+		navigator.require('js/Touch.js', function () {
+			var touch = navigator.mod('Touch');
+			var c = 0;
+			z('paper-button')
+			.each(function () {
+				z(this).attr('data-m-c', c);
+				c++;
+			})
+			
+			.on(touch.tap, function () {
+				//alert(z(this).attr('data-m-c'));
+			});
+			
+			z('#m_add_item_floating_button').on('tap', function () {
+				//alert('Add button');
+			})
+			.on(touch.doubleTap, function () {
+				alert(11);
+			});
+			
+			z('paper-material .m_monthly_list_item')
+			//.append('<paper-ripple></paper-ripple>') // add  ripples to cards
+			.on(touch.tap, function () {
+				//z('#m-toast').attr('text', z(this).text().trim())[0].show();
+				//this.show();
+			})
+			// See: https://www.polymer-project.org/0.5/docs/polymer/touch.html
+			.on(touch.longTap, function () {
+				alert(11);
+			});
+			
+			z('#long_tap').on(touch.longTap, function () {
+				this.style.backgroundColor = '#ccc';
+			});	
 		});
-		
-		z('#m_add_item_floating_button').on('tap', function () {
-			//alert('Add button');
-		})
-		.on('doubleTap', function () {
-			alert(11);
+	
+		navigator.require('js/Routes.js', function () {
+			navigator.mod('Routes').root
+				.on('pagechange', function () {
+					document.getElementById('paperDrawerPanel').closeDrawer();
+				})
+				.on('logs_page', function (e, $page) {
+					z('#log_data_con').html($page.data('route_data'));
+				});	
 		});
-		
-		z('paper-material .m_monthly_list_item')
-		.append('<paper-ripple></paper-ripple>') // add  ripples to cards
-		.on('tap', function () {
-			z('#m-toast').attr('text', z(this).text().trim())[0].show();
-			//this.show();
-		})
-		// See: https://www.polymer-project.org/0.5/docs/polymer/touch.html
-		.on('longTap', function () {
-			alert(11);
-		});
-		
 		
 	});
 	</script>

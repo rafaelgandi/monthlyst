@@ -1,13 +1,19 @@
 
 body {
-  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-touch-callout: none;
+	font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+	margin: 0;
+	padding: 0;
+	/* See: http://stackoverflow.com/a/11823698 */
+    -webkit-user-select: none;
+	user-select: none;
+	/* prevent webkit from resizing text to fit */
+	-webkit-text-size-adjust: none;             
+	
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
 }
 
-#core_toolbar {
+#main_toolbar {
 	right: 0px;
 	left: -10px;
 	color: rgb(255, 255, 255);
@@ -15,41 +21,12 @@ body {
 	top: 0px;
 	position: static;
 	background-color: rgb(128, 0, 255);
-  }
-  #input {
-	padding: 15px;
-	left: 30px;
-	top: 80px;
-	position: absolute;
-  }
-
-paper-checkbox {
-  padding: 20px 20px 20px 0;
-}
-
-section {
-  width: 300px;
-}
-
-paper-checkbox.blue::shadow #ink[checked] {
-  color: #BBDEFB;
-}
-
-paper-checkbox.blue::shadow #checkbox.checked {
-  background-color: #2196F3;
-  border-color: #2196F3;
 }
 
 .paper-font-body2 {
 	padding: 10px;
 }
 
-#content {
-	padding: 10px;
-	position: relative;
-	overflow-y: auto;
-	overflow-x: hidden;
-}
 
 paper-header-panel {
 	background-color: #fff;
@@ -57,6 +34,13 @@ paper-header-panel {
 
 .m_monthly_list_item {
 	padding: 30px;
+}
+
+#content {
+	padding: 10px;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #content paper-fab {
@@ -74,5 +58,13 @@ paper-header-panel {
 
 #m_add_item_floating_button {
 	/* box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2); */
+}
+
+section.route_page {
+	display: none;
+}
+
+section.route_active_page {
+	display: block !important;
 }
     
