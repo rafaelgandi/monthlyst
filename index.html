@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		<paper-header-panel main>
 			<!-- Main Header -->
 			<paper-toolbar id="main_toolbar">
-				<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+				<paper-icon-button icon="menu" m-paper-drawer-toggle></paper-icon-button>
 				<!-- <paper-icon-button icon="menu" ></paper-icon-button>  -->
 				<span class="flex">Monthlyst</span>
 				<paper-icon-button icon="more-vert"></paper-icon-button>			
@@ -186,9 +186,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			
 			z('#long_tap').on(touch.longTap, function () {
 				this.style.backgroundColor = '#ccc';
+			});
+			
+			// Sometimes paper-drawer-toggle does not work in phonegap //
+			z('[m-paper-drawer-toggle]').on(touch.tap, function () {			
+				document.getElementById('paperDrawerPanel').togglePanel();
 			});	
 		});
-	
+		
 		navigator.require('js/Routes.js', function () {
 			navigator.mod('Routes').root
 				.on('pagechange', function () {
@@ -198,6 +203,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					z('#log_data_con').html($page.data('route_data'));
 				});	
 		});
+		
 		
 	});
 	</script>
