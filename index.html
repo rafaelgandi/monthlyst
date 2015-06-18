@@ -23,13 +23,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="theme-color" content="#303F9F">
  <link rel="import" href="components/elements.html">
  <link rel="stylesheet" href="css/monthlyst.css">
+ <script>!window.PhoneGap && document.write("<script src='phonegap.js'>\x3C/script>");</script>
  <script src="js/lib/zepto.min.js"></script>
+ 
  <!-- <script src="js/lib/zepto/fx.js"></script>
  <script src="js/lib/zepto/fx_methods.js"></script>
- <script src="js/lib/zepto/touch.js"></script>
  <script src="js/lib/zepto/data.js"></script> -->
+ 
  <script>window.z = Zepto;</script>
  <script src="js/lib/mobile.famd.js"></script>
+ <script src="js/Fakegap.js"></script>
 </head>
 <body unresolved class="fullbleed layout vertical">
 	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
@@ -44,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				  </span>
 				</paper-toolbar>
 				<!-- Drawer Content -->
-				<paper-menu>
+				<paper-menu id="m_setting_list">
 					<paper-item role="menuitem" data-route="monthly_item_list_page">List</paper-item>
 					<paper-item role="menuitem" data-route="about_page">About</paper-item>
 					<paper-item role="menuitem" data-route="logs_page" data-route_data="this is logs data">Logs</paper-item>
@@ -59,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		<paper-header-panel main>
 			<!-- Main Header -->
 			<paper-toolbar id="main_toolbar">
-				<paper-icon-button icon="menu" m-paper-drawer-toggle></paper-icon-button>
+				<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
 				<!-- <paper-icon-button icon="menu" ></paper-icon-button>  -->
 				<span class="flex">Monthlyst</span>
 				<paper-icon-button icon="more-vert"></paper-icon-button>			
@@ -83,14 +86,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 					<br style="clear:both;">
 					<!-- Monthly list items -->
 					<paper-material elevation="2">
-						<p class="m_monthly_list_item">
+						<p class="m_monthly_list_item"  id="longtap">
 							This is another card.
 							<paper-ripple></paper-ripple>
 						</p>					
 					</paper-material>
 					
 					<paper-material elevation="2">
-						<p class="m_monthly_list_item">This is another card.</p>
+						<p class="m_monthly_list_item">Long tap me.</p>
 					</paper-material>
 					
 					<paper-material elevation="2">
@@ -174,65 +177,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		</paper-header-panel>
 	</paper-drawer-panel>
 	<script>
-	z(function ($) {
-		navigator.require('js/Touch.js', function () {
-			var touch = navigator.mod('Touch');
-			var c = 0;
-			z('paper-button')
-			.each(function () {
-				z(this).attr('data-m-c', c);
-				c++;
-			})
+	z(document).on('Fakegap', function () {
+		navigator.mod('Fakegap').deviceReady(function () {
+			var phonegap = navigator.mod('Fakegap');
 			
-			.on(touch.tap, function () {
-				//alert(z(this).attr('data-m-c'));
+			navigator.require('js/Touch.js', function () {
+				var touch = navigator.mod('Touch');
+				var c = 0;
+				z('paper-button')
+				.each(function () {
+					z(this).attr('data-m-c', c);
+					c++;
+				})				
+				.on(touch.tap, function () {
+					//alert(z(this).attr('data-m-c'));
+				});
+				
+				z('#m_add_item_floating_button').on('tap', function () {
+					//alert('Add button');
+				});
+				
+				z('paper-material .m_monthly_list_item')
+				//.append('<paper-ripple></paper-ripple>') // add  ripples to cards
+				.on(touch.tap, function () {
+					//z('#m-toast').attr('text', z(this).text().trim())[0].show();
+					//this.show();
+				});
+				
+				z('.m_context_div').on(touch.tap, function () {
+					z('#m-toast').attr('text', this.getAttribute('data-m-value'))[0].show();
+					document.getElementById('m_context_dialog').close();
+				});
+				
+				// Custom long tap //
+				touch.longTap(z('#long_tap'), function ($me) {
+					setTimeout(function () { // dialog works better with a delay
+						z('#long_tap')[0].style.backgroundColor = '#ccc';
+						document.getElementById('m_context_dialog').open();
+					}, 100);
+				});
+				
+				// Custom long tap //
+				touch.longTap(z('#longtap'), function ($me) {
+					alert(1);
+				});
+				
 			});
 			
-			z('#m_add_item_floating_button').on('tap', function () {
-				//alert('Add button');
-			})
-			.on(touch.doubleTap, function () {
-				alert(11);
+			phonegap.backButton(function () {
+				alert('back button');
 			});
 			
-			z('paper-material .m_monthly_list_item')
-			//.append('<paper-ripple></paper-ripple>') // add  ripples to cards
-			.on(touch.tap, function () {
-				//z('#m-toast').attr('text', z(this).text().trim())[0].show();
-				//this.show();
-			})
-			// See: https://www.polymer-project.org/0.5/docs/polymer/touch.html
-			.on(touch.longTap, function () {
-				alert(11);
+			phonegap.menuButton(function () {
+				alert('menu button');
+			});
+				
+			navigator.require('js/Routes.js', function () {
+				navigator.mod('Routes').root
+					.on('pagechange', function () {
+						document.getElementById('paperDrawerPanel').closeDrawer();
+						//z('#m_setting_list')[0].select('blah'); // <-- to disable highlighting when clicked
+					})
+					.on('logs_page', function (e, $page) {
+						z('#log_data_con').html($page.data('route_data'));
+					});	
 			});
 			
-			z('#long_tap').on(touch.tap, function () {
-				this.style.backgroundColor = '#ccc';
-				document.getElementById('m_context_dialog').open();
-			});
-			
-			// Sometimes paper-drawer-toggle does not work in phonegap //
-			z('[m-paper-drawer-toggle]').on(touch.tap, function () {			
-				document.getElementById('paperDrawerPanel').togglePanel();
-			});
-			
-			z('.m_context_div').on(touch.longTap, function () {
-				z('#m-toast').attr('text', this.getAttribute('data-m-value'))[0].show();
-			});
 		});
-		
-		navigator.require('js/Routes.js', function () {
-			navigator.mod('Routes').root
-				.on('pagechange', function () {
-					document.getElementById('paperDrawerPanel').closeDrawer();
-				})
-				.on('logs_page', function (e, $page) {
-					z('#log_data_con').html($page.data('route_data'));
-				});	
-		});
-		
-		
 	});
+	
 	</script>
 </body>
 
