@@ -1,7 +1,6 @@
 
-navigator.define('Util', function (undefined) {
-	var z = Zepto,
-		$root = z(document);
+navigator.define('Util', function (z, undefined) {
+	var $root = z(document);
 	
 	return {
 		// See: http://stackoverflow.com/a/2673229

@@ -129,7 +129,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 				$(function () {
 					var run = _callback.call(self, $); // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
 					__modules[_moduleName] = (run instanceof Object) ? run : {};
-					$root.trigger(_moduleName);
+					$root.trigger(_moduleName, [__modules[_moduleName]]);
 				});
 			});
 		}
@@ -138,7 +138,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 			$(function () {
 				var run = _callback.call(self, $);
 				__modules[_moduleName] = (run instanceof Object) ? run : {};
-				$root.trigger(_moduleName);
+				$root.trigger(_moduleName, __modules[_moduleName]);
 			}); 
 		}
 	};

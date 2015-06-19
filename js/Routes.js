@@ -1,7 +1,5 @@
-//navigator.require('js/Util.js');
-navigator.define('Routes', function (undefined) {
-	var z = Zepto,
-		$root = z(document),
+navigator.define('Routes', function (z, undefined) {
+	var $root = z(document),
 		$pages = z('section.route_page'),
 		pageCache = {},
 		$CURRENT_PAGE = $pages.filter('.route_active_page'),

@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	<link rel="stylesheet" href="css/monthlyst.css">
 	<script>!window.PhoneGap && document.write("<script src='phonegap.js'>\x3C/script>");</script>
 	<script src="js/lib/zepto.min.js"></script>
-	<script>window.z = Zepto;</script>
+	<script>window.z = Zepto; window.root = z(document);</script>
 	<script src="js/lib/mobile.famd.js"></script>
 	<script src="js/Fakegap.js"></script>
 </head>
@@ -211,7 +211,7 @@ asfasdfasd
 	</paper-drawer-panel>
 	<script>
 	navigator.require('js/Touch.js');
-	z(document).on('Fakegap', function () {
+	root.on('Fakegap', function () {
 		navigator.mod('Fakegap').deviceReady(function () {
 			var phonegap = navigator.mod('Fakegap'),
 				touch = navigator.mod('Touch');
@@ -225,16 +225,16 @@ asfasdfasd
 			});	
 		});
 	});
-	navigator.require('js/Routes.js', function () {
-		navigator.mod('Routes').root
-			.on('pagechange', function () {
+	navigator.require('js/Routes.js');
+	root.on('Routes', function (e, routes) {
+		root.on('pagechange', function () {
 				document.getElementById('paperDrawerPanel').closeDrawer();
 				//z('#m_setting_list')[0].select('blah'); // <-- to disable highlighting when clicked
 			})
 			.on('logs_page', function (e, $page) {
 				z('#log_data_con').html($page.data('route_data'));
-			});	
-	});
+			});		
+	});		
 	</script>
 </body>
 </html>

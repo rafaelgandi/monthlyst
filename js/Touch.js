@@ -1,5 +1,4 @@
-navigator.define('Touch', function (undefined) {
-	var z = Zepto;
+navigator.define('Touch', function (z, undefined) {
 	//var isMobile =  !! navigator.userAgent.toLowerCase().match(/android/i);
 	var isMobile =  !(z(window).width() > 800),
 		longTapTimer;

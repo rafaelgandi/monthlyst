@@ -1,6 +1,5 @@
-navigator.define('Fakegap', function (undefined) {
-	var z = Zepto,
-		$root = z(document);
+navigator.define('Fakegap', function (z, undefined) {
+	var $root = z(document);
 	
 	function deviceReady(_callback) {
 		_callback = _callback || function () {};
