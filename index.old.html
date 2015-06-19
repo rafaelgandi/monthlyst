@@ -1,0 +1,252 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Polymer Starter Kit" />
+  <title>Monthlyst</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#303F9F">
+ <link rel="import" href="components/elements.html">
+ <link rel="stylesheet" href="css/monthlyst.old.css">
+ <script>!window.PhoneGap && document.write("<script src='phonegap.js'>\x3C/script>");</script>
+ <script src="js/lib/zepto.min.js"></script>
+ 
+ <!-- <script src="js/lib/zepto/fx.js"></script>
+ <script src="js/lib/zepto/fx_methods.js"></script>
+ <script src="js/lib/zepto/data.js"></script> -->
+ 
+ <script>window.z = Zepto;</script>
+ <script src="js/lib/mobile.famd.js"></script>
+ <script src="js/Fakegap.js"></script>
+</head>
+<body unresolved class="fullbleed layout vertical">
+	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
+	<paper-drawer-panel id="paperDrawerPanel">	
+		<paper-header-panel drawer>
+			<div drawer>
+				<!-- Drawer Toolbar -->
+				<paper-toolbar id="drawerToolbar">
+				  <span class="paper-font-title">
+					Menu
+					<paper-ripple></paper-ripple>
+				  </span>
+				</paper-toolbar>
+				<!-- Drawer Content -->
+				<paper-menu id="m_setting_list">
+					<paper-item role="menuitem" data-route="monthly_item_list_page">List</paper-item>
+					<paper-item role="menuitem" data-route="about_page">About</paper-item>
+					<paper-item role="menuitem" data-route="logs_page" data-route_data="this is logs data">Logs</paper-item>
+					<paper-item role="menuitem">Backup</paper-item>
+					<paper-item role="menuitem">Restore</paper-item>
+				<paper-menu>
+			</div>	
+		</paper-header-panel>
+		
+		<!-- ================================================================================== -->
+		
+		<paper-header-panel main>
+			<!-- Main Header -->
+			<paper-toolbar id="main_toolbar">
+				<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+				<!-- <paper-icon-button icon="menu" ></paper-icon-button>  -->
+				<span class="flex">Monthlyst</span>
+				<paper-icon-button icon="more-vert"></paper-icon-button>			
+			</paper-toolbar>
+			<div id="content" class="flex">			
+				<!-- <section id="monthlyst_list" class="flex"> -->
+					<!-- <paper-button >button</paper-button>
+					<paper-button class="colored">colored</paper-button>
+					<paper-button disabled>disabled</paper-button>
+					<paper-button noink>noink</paper-button> -->					
+				
+				<!-- List Page -->				
+				<section id="monthly_item_list_page" class="route_page route_active_page">
+				
+					<div id="long_tap" style="padding: 10px;border: 1px solid red;" class="">hello</div>
+					
+					<div id="m_month_nav_con" class="flex">						
+						<paper-icon-button icon="chevron-left" style="float: left"></paper-icon-button>
+						<paper-icon-button icon="chevron-right" style="float: right"></paper-icon-button>						
+					</div>
+					<br style="clear:both;">
+					<!-- Monthly list items -->
+					<paper-material elevation="2">
+						<p class="m_monthly_list_item"  id="longtap">
+							This is another card.
+							<paper-ripple></paper-ripple>
+						</p>					
+					</paper-material>
+					
+					<paper-material elevation="2">
+						<p class="m_monthly_list_item">Long tap me.</p>
+					</paper-material>
+					
+					<paper-material elevation="2">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="1">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">This is another card.</p>
+					</paper-material>
+					
+					<!-- Add circle button -->				
+					<paper-fab icon="add" id="m_add_item_floating_button" role="button" data-route="new_item_page"></paper-fab>
+				</section>
+				
+				<!-- About Page -->
+				<section id="about_page" class="route_page">
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">
+							This is the about page.
+						</p>
+					</paper-material>
+				</section>
+				
+				<!-- New Item Page -->
+				<section id="new_item_page" class="route_page">
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">
+							<paper-input label="Monthly item to do"></paper-input>
+						</p>
+					</paper-material>
+				</section>
+				
+				<!-- Logs Page -->
+				<section id="logs_page" class="route_page">
+					<paper-material elevation="3">
+						<p class="m_monthly_list_item">This is the logs page. Logs data = "<span id="log_data_con"></span>"</p>
+					</paper-material>
+				</section>
+				
+				<!-- toast element -->
+				<paper-toast text="Some message" id="m-toast"></paper-toast>
+				
+				<paper-dialog id="m_context_dialog">
+					<!--  <paper-menu>
+						<paper-item><span class="center">List</span></paper-item>
+						<paper-item>About</paper-item>
+						<paper-item>Logs</paper-item>
+						<paper-item>Backup</paper-item>
+						<paper-item>Restore</paper-item>
+						
+					</paper-menu>-->
+					<div class="m_context_div" data-m-value="Edit">
+						<paper-button>
+							<iron-icon icon="create"></iron-icon> Edit
+						</paper-button>
+					</div>
+					<div class="m_context_div" data-m-value="Delete">
+						<paper-button>
+							<iron-icon icon="delete"></iron-icon> Delete
+						</paper-button>
+					</div>
+				</paper-dialog>
+				
+			</div>	
+		</paper-header-panel>
+	</paper-drawer-panel>
+	<script>
+	z(document).on('Fakegap', function () {
+		navigator.mod('Fakegap').deviceReady(function () {
+			var phonegap = navigator.mod('Fakegap');
+			
+			navigator.require('js/Touch.js', function () {
+				var touch = navigator.mod('Touch');
+				var c = 0;
+				z('paper-button')
+				.each(function () {
+					z(this).attr('data-m-c', c);
+					c++;
+				})				
+				.on(touch.tap, function () {
+					//alert(z(this).attr('data-m-c'));
+				});
+				
+				z('#m_add_item_floating_button').on('tap', function () {
+					//alert('Add button');
+				});
+				
+				z('paper-material .m_monthly_list_item')
+				//.append('<paper-ripple></paper-ripple>') // add  ripples to cards
+				.on(touch.tap, function () {
+					//z('#m-toast').attr('text', z(this).text().trim())[0].show();
+					//this.show();
+				});
+				
+				z('.m_context_div').on(touch.tap, function () {
+					z('#m-toast').attr('text', this.getAttribute('data-m-value'))[0].show();
+					document.getElementById('m_context_dialog').close();
+				});
+				
+				// Custom long tap //
+				touch.longTap(z('#long_tap'), function ($me) {
+					setTimeout(function () { // dialog works better with a delay
+						z('#long_tap')[0].style.backgroundColor = '#ccc';
+						document.getElementById('m_context_dialog').open();
+					}, 100);
+				});
+				
+				// Custom long tap //
+				touch.longTap(z('#longtap'), function ($me) {
+					alert(1);
+				});
+				
+			});
+			
+			phonegap.backButton(function () {
+				alert('back button');
+			});
+			
+			phonegap.menuButton(function () {
+				alert('menu button');
+			});
+				
+			navigator.require('js/Routes.js', function () {
+				navigator.mod('Routes').root
+					.on('pagechange', function () {
+						document.getElementById('paperDrawerPanel').closeDrawer();
+						//z('#m_setting_list')[0].select('blah'); // <-- to disable highlighting when clicked
+					})
+					.on('logs_page', function (e, $page) {
+						z('#log_data_con').html($page.data('route_data'));
+					});	
+			});
+			
+		});
+	});
+	
+	</script>
+</body>
+
+</html>

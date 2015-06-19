@@ -7,33 +7,31 @@ body {
     -webkit-user-select: none;
 	user-select: none;
 	/* prevent webkit from resizing text to fit */
-	-webkit-text-size-adjust: none;             
-	
+	-webkit-text-size-adjust: none;             	
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-touch-callout: none;
 }
 
+.left { float: left !important; }
+.right { float: right !important; }
+.clear { clear: both !important; display:block;}
+
+#main_toolbar, #drawer_toolbar {
+	color: #fff;
+	fill: #fff;
+	/* background-color: rgb(128, 0, 255); */
+	background-color: #FDD835;
+}
+
 #main_toolbar {
 	right: 0px;
-	left: -10px;
-	color: rgb(255, 255, 255);
-	fill: rgb(255, 255, 255);
+	left: -10px;	
 	top: 0px;
-	position: static;
-	background-color: rgb(128, 0, 255);
+	position: static;	
 }
-
-.paper-font-body2 {
-	padding: 10px;
-}
-
 
 paper-header-panel {
 	background-color: #fff;
-}
-
-.m_monthly_list_item {
-	padding: 30px;
 }
 
 #content {
@@ -49,15 +47,7 @@ paper-header-panel {
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-	background-color: #ff4081;
-}
-
-#m_month_nav_con paper-icon-button {
-	padding: 20px;
-}
-
-#m_add_item_floating_button {
-	/* box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2); */
+	background-color: #FDD835;
 }
 
 section.route_page {
@@ -67,6 +57,7 @@ section.route_page {
 section.route_active_page {
 	display: block !important;
 }
+
 
 #m_context_dialog.paper-dialog-0 {
 	overflow: hidden !important;
@@ -83,3 +74,93 @@ section.route_active_page {
 	padding: 0;
 	margin: 0;
 }
+
+.button_divider {
+	margin-top: 40px;
+	display: block;
+	text-align:center;
+}
+
+.button_divider paper-button {
+	width: 150px;
+}
+
+.align_center {
+	text-align: center;
+}
+
+
+/* List Page { */
+#monthly_item_list_page {
+	padding-bottom: 30px;
+}
+#m_month_nav_con {
+	position: relative;
+	text-align: center;
+}
+
+
+#m_list_date_con {
+	width: 64%;
+	padding: 21px 0;
+}
+
+#m_month_nav_con paper-icon-button {
+	padding: 20px;
+}
+.m_monthly_list_item:first-child {
+	margin-top: 5px !important;
+}
+.m_monthly_list_item {
+	padding: 10px;
+	margin: 20px 0;
+	min-height: 100px;
+}
+
+.m_monthly_list_item.no {
+	/* border-left: 3px solid #DD2C00; */
+	background-color: #FFEBEE;
+}
+.m_monthly_list_item.yes {
+	/* border-left: 3px solid #4CAF50; */
+	background-color: #F1F8E9;
+}
+
+.m_monthly_list_item header {
+	font-size: 23px;
+	text-align: center;
+	padding: 10px;
+}
+.m_monthly_list_item .notes {
+	font-size: 15px;
+	color: #AA9C84;
+	text-align: justify;
+}
+/* } */
+
+/* Logs Page { */
+#logs_page {
+	background-color: #272822;
+}
+#m_log_con {
+	background-color: none;
+	color: #fff;
+	padding: 5px;
+}
+/* Logs Page } */
+
+/* New Item Page { */
+#new_item_page {
+	padding-top: 30px;
+}
+
+#new_item_page paper-radio-group {
+	margin-top: 30px;
+}
+/* New Item Page } */
+
+/* Add notes Page { */
+#add_notes_page {
+	padding-top: 30px;
+}
+/* Add notes Page } */

@@ -1,0 +1,85 @@
+
+body {
+	font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+	margin: 0;
+	padding: 0;
+	/* See: http://stackoverflow.com/a/11823698 */
+    -webkit-user-select: none;
+	user-select: none;
+	/* prevent webkit from resizing text to fit */
+	-webkit-text-size-adjust: none;             
+	
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+}
+
+#main_toolbar {
+	right: 0px;
+	left: -10px;
+	color: rgb(255, 255, 255);
+	fill: rgb(255, 255, 255);
+	top: 0px;
+	position: static;
+	background-color: rgb(128, 0, 255);
+}
+
+.paper-font-body2 {
+	padding: 10px;
+}
+
+
+paper-header-panel {
+	background-color: #fff;
+}
+
+.m_monthly_list_item {
+	padding: 30px;
+}
+
+#content {
+	padding: 10px;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#content paper-fab {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: #ff4081;
+}
+
+#m_month_nav_con paper-icon-button {
+	padding: 20px;
+}
+
+#m_add_item_floating_button {
+	/* box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2); */
+}
+
+section.route_page {
+	display: none;
+}
+
+section.route_active_page {
+	display: block !important;
+}
+
+#m_context_dialog.paper-dialog-0 {
+	overflow: hidden !important;
+}
+
+#m_context_dialog paper-button {
+	padding: 0;
+	margin: 0;
+	width: 300px;
+	padding: 16px;	
+}
+
+#m_context_dialog .m_context_div {
+	padding: 0;
+	margin: 0;
+}
