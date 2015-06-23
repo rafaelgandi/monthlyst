@@ -96,9 +96,10 @@ navigator.define('Fakegap', [
 	
 	return {
 		deviceReady: deviceReady,
-		backButton: backButton,
-		menuButton: menuButton,
+		bindBackButton: backButton,
+		bindMenuButton: menuButton,
 		confirm: confirm,
-		datePicker: datePicker
+		datePicker: datePicker,
+		exit: exitApp
 	};
 });

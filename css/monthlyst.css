@@ -15,9 +15,8 @@ body {
 	-webkit-text-size-adjust: none;             	
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-touch-callout: none;
-	
+	color: #212121;
 }
-
 .left { float: left !important; }
 .right { float: right !important; }
 .clear { clear: both !important; display:block;}
@@ -25,15 +24,8 @@ body {
 #main_toolbar, #drawer_toolbar {
 	color: #fff;
 	fill: #fff;
-	/* background-color: rgb(128, 0, 255); */
-	background-color: #FDD835;
-}
-
-#main_toolbar {
-	right: 0px;
-	left: -10px;	
-	top: 0px;
-	position: static;	
+	/* background-color: #FDD835; */
+	background-color: #FFC107;
 }
 
 paper-header-panel {
@@ -53,7 +45,8 @@ paper-header-panel {
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-	background-color: #FDD835;
+	/* background-color: #FDD835; */
+	background-color: #FFC107;
 }
 
 .m_simple_highlight {
@@ -112,6 +105,22 @@ section.route_active_page {
 #mainContainer {
 	background-color: #F7F7F7;
 }
+
+#m_dropdown_menu {
+	display: none;
+	background-color: #fff;
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+#m_dropdown_menu div {
+	width: 150px;
+	padding: 15px;
+	position: relative;
+	overflow: hidden;
+}
+
 
 /* List Page { */
 #monthly_item_list_page {
@@ -190,7 +199,8 @@ section.route_active_page {
 #m_month_changer_button paper-ripple {
 	color: #F9CE0D;
 }
-#m_list_item_con paper-material {
+#m_list_item_con paper-material,
+#m_list_item_con .m_monthly_list_item {
 	border-radius: 3px;
 }
 #monthly_item_list_page hr {

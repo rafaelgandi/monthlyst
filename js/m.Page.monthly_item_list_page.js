@@ -157,17 +157,24 @@ navigator.define('m\Page\monthly_item_list_page', [
 				populateList((d.getMonth()+1), d.getFullYear());
 			});
 		},
-		tapPrevNextButtons: function (e) {
-			var $me = z(this);
-			if (this.id.indexOf('prev') > -1) { // prev button pressed
-				var prevDateInfo = date.prevMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
-				populateList(prevDateInfo.month, prevDateInfo.year);
-			}
-			else {
-				var nextDateInfo = date.nextMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
-				populateList(nextDateInfo.month, nextDateInfo.year);
-			}
-		},
+		tapPrevNextButtons: (function () {
+			var tapTimer;
+			return function (e) {
+				var $me = z(this),
+					isPrev = (this.id.indexOf('prev') > -1);
+				clearTimeout(tapTimer);	
+				tapTimer = setTimeout(function () { // Give the button ripple effect time to show in mobile
+					if (isPrev) { // prev button pressed
+						var prevDateInfo = date.prevMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
+						populateList(prevDateInfo.month, prevDateInfo.year);
+					}
+					else {
+						var nextDateInfo = date.nextMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
+						populateList(nextDateInfo.month, nextDateInfo.year);
+					}					
+				}, 100);				
+			}			
+		})(),
 		longTapItem: function ($me) { // For context dialog
 			var itemId = $me.attr('data-m-item_id');
 			$contextDialog.find('paper-button').attr('data-m-item_id', itemId);
@@ -193,13 +200,15 @@ navigator.define('m\Page\monthly_item_list_page', [
 			}
 			else if (action === 'm_edit') { // edit
 				setTimeout(function () {
+					closeContextDialog();
 					routes.gotoPage('new_item_page', {
 						itemId: itemId
-					});
+					});			
 				}, 100);				
 			}	
 			else { // add note
 				setTimeout(function () {
+					closeContextDialog();
 					routes.gotoPage('add_notes_page', {
 						itemId: itemId,
 						monthTimestamp: MONTH_TIMESTAMP

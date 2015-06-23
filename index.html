@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			<div drawer>
 				<!-- Drawer Toolbar -->
 				<paper-toolbar id="drawer_toolbar">
-					<span>Monthlyst</span>
+					<span class="title">Monthlyst</span>
 				</paper-toolbar>
 				<!-- Drawer Content -->
 				<paper-menu id="m_setting_list">
@@ -58,8 +58,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			<!-- Main Header -->
 			<paper-toolbar id="main_toolbar">
 				<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-				<span class="flex">Monthlyst</span>
-				<paper-icon-button icon="more-vert"></paper-icon-button>			
+				<span class="flex title">Monthlyst</span>
+				<paper-icon-button icon="more-vert" id="m_dropdown_menu_button"></paper-icon-button>			
 			</paper-toolbar>
 			<div id="content" class="flex">						
 				<!-- List Page {-->				
@@ -83,13 +83,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				<!-- Logs Page {-->
 				<section id="logs_page" class="route_page"><pre id="m_log_con" class="fullbleed vertical"></pre></section>
 				<!-- Logs Page }-->
-
 				
 				<!-- Toast Element -->
 				<paper-toast text="Some message" id="m-toast"></paper-toast>							
 			</div>	
 		</paper-header-panel>
 	</paper-drawer-panel>
+	<section id="m_dropdown_menu">
+		<div data-m-value="about">
+			About
+			<paper-ripple></paper-ripple>
+		</div>
+		<div data-m-value="exit">
+			Exit
+			<paper-ripple></paper-ripple>
+		</div>
+	</section>
 	<script src="js/Fakegap.js"></script>
 	<script src="js/m.Init.js"></script>
 </body>

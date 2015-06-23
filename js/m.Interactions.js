@@ -1,32 +1,42 @@
 navigator
 .require('js/m.Cholog.js')
+.require('js/Routes.js')
 .require('js/Fakegap.js');
 
 navigator.define('m\Interactions', [
 	'm\Cholog',
+	'Routes',
 	'Fakegap'
 ], function (z, undefined) {	
 	var $root = z(document),
+		routes = navigator.mod('Routes'),
 		fakegap = navigator.mod('Fakegap');
 	
 	cholog('m\\Interactions loaded!');
+	navigator.require('js/m.UpperRightMenu.js');
 	
 	var phonegapEvents = {
 		backButton: function () {
-			alert('back button');
+			var $currentPage = z('.route_active_page'),
+				pageId;
+			if (! $currentPage.length) { return; }
+			pageId = $currentPage.attr('id').trim();
+			if (pageId === 'monthly_item_list_page') {
+				alert('exit');
+				fakegap.exit();
+			}
+			else {
+				// Redirect to list page //
+				routes.gotoPage('monthly_item_list_page');
+			}
 		},
 		menuButton: function () {},
 	};
 
 	// ================================ Handle events here ================================ //
-	
-	navigator.require('js/LongTap.js').then('LongTap', function (longtap) { // For long tap events
-		
-	});	
 	// Phonegap Events //
-	document.addEventListener('backbutton', phonegapEvents.backButton, false);		
-	document.addEventListener('menubutton', phonegapEvents.menuButton, false);
-	
+	fakegap.bindBackButton(phonegapEvents.backButton);
+	fakegap.bindMenuButton(phonegapEvents.menuButton);	
 	
 	return {init:true};	
 });
