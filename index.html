@@ -22,7 +22,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	<script src="js/lib/zepto.min.js"></script>
 	<script>window.z = Zepto; window.root = z(document);</script>
 	<script src="js/lib/mobile.famd.js"></script>
-	<script src="js/Fakegap.js"></script>
+	<style is="custom-style">
+		paper-radio-button {
+			--paper-radio-button-checked-color: var(--paper-orange-500);
+			--paper-radio-button-checked-ink-color: var(--paper-orange-500);
+			--paper-radio-button-unchecked-color: var(--paper-orange-900);
+			--paper-radio-button-unchecked-ink-color: var(--paper-orange-900);
+		}
+		:root {
+			--paper-input-container-focus-color: var(--paper-orange-500);
+		}		
+	</style>
 </head>
 <body unresolved class="fullbleed layout vertical">
 	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
@@ -53,188 +63,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			</paper-toolbar>
 			<div id="content" class="flex">						
 				<!-- List Page {-->				
-				<section id="monthly_item_list_page" class="route_page ">
-					<div id="m_month_nav_con" class="flex">						
-						<paper-icon-button icon="chevron-left" class="left"></paper-icon-button>
-						<div id="m_list_date_con" class="left">
-							<span>June 2015 </span>							
-						</div>	
-						<paper-icon-button icon="chevron-right" class="right"></paper-icon-button>						
-					</div>
-					<br class="clear">
-					
-					<!-- Monthly list items {-->
-					<paper-material elevation="3">
-						<div class="m_monthly_list_item no"  id="longtap">
-							<header>This is a monthly item</header>
-							<p class="notes">
-								It is a long established fact that a reader will be distracted by the readable 
-								content of a page when looking at its layout. The point of using Lorem Ipsum is 
-								that it has a more-or-less normal distribution of letters, as opposed to using 
-								'Content here, content here', making it look like readable English.
-							</p>
-						</div>					
-					</paper-material>
-			
-					<paper-material elevation="3">
-						<div class="m_monthly_list_item yes"  id="longtap">
-							<header>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</header>
-							<p class="notes"></p>
-						</div>					
-					</paper-material>
-					
-					<paper-material elevation="3">
-						<div class="m_monthly_list_item yes"  id="longtap">
-							<header>This is a monthly item</header>
-							<p class="notes">
-								It is a long established fact that a reader will be distracted by the readable 
-								content of a page when looking at its layout..
-							</p>
-						</div>					
-					</paper-material>
-					
-					<paper-material elevation="3">
-						<div class="m_monthly_list_item no"  id="longtap">
-							<header>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</header>
-							<p class="notes"></p>
-						</div>					
-					</paper-material>
-					
-					<paper-material elevation="3">
-						<div class="m_monthly_list_item no"  id="longtap">
-							<header>This is a monthly item</header>
-							<p class="notes"></p>
-						</div>					
-					</paper-material>
-					<!-- Monthly list items }-->
-					
-					<!-- Add circle button -->				
-					<paper-fab icon="add" id="m_add_item_floating_button" role="button" data-route="new_item_page"></paper-fab>
+				<section id="monthly_item_list_page" class="route_page route_active_page">
+					<em class="m_page_thinking">Thinking...</em>
 				</section>
 				<!-- List Page }-->	
 				
 				<!-- About Page {-->
-				<section id="about_page" class="route_page">
-					<paper-material elevation="3">
-						<p class="align_center">
-							This is the about page.
-						</p>
-					</paper-material>
-				</section>
+				<section id="about_page" class="route_page"><em class="m_page_thinking">Thinking...</em></section>
 				<!-- About Page }-->
 				
 				<!-- New Item Page {-->
-				<section id="new_item_page" class="route_page ">
-					<!-- item input text -->
-					<paper-input required label="Monthly item to do"></paper-input>	
-					<!-- repeat type radio buttons -->
-					<paper-radio-group selected="monthly" id="m_repeat_type">
-						<paper-radio-button name="monthly" value="0">Monthly</paper-radio-button>
-						<paper-radio-button name="quarterly" value="1">Quarterly</paper-radio-button>
-					</paper-radio-group>
-					<!-- 
-						Getting the value via js 
-						z('#m_repeat_type').find('paper-radio-button[checked]').attr('value')
-					-->					
-					<div class="button_divider">
-						<paper-button raised tabindex="0">
-							<iron-icon icon="clear"></iron-icon>cancel
-						</paper-button>
-						<paper-button raised tabindex="0">
-							<iron-icon icon="check"></iron-icon>ok
-						</paper-button>	
-					</div>	
-				</section>
+				<section id="new_item_page" class="route_page"><em class="m_page_thinking">Thinking...</em></section>
 				<!-- New Item Page }-->
 				
 				<!-- Add notes Page {-->
-				<section id="add_notes_page" class="route_page route_active_page">
-					<!-- notes input text -->
-					<paper-textarea label="Note"></paper-textarea>	
-					<div class="button_divider">
-						<paper-button raised tabindex="0">
-							<iron-icon icon="clear"></iron-icon>cancel
-						</paper-button>
-						<paper-button raised tabindex="0">
-							<iron-icon icon="check"></iron-icon>ok
-						</paper-button>	
-					</div>	
-				</section>
+				<section id="add_notes_page" class="route_page"><em class="m_page_thinking">Thinking...</em></section>
 				<!-- Add notes Page }-->
 				
 				<!-- Logs Page {-->
-				<section id="logs_page" class="route_page">
-					<pre id="m_log_con" class="fullbleed vertical">
-asdfasdfafasfasd
-asdfasdasdfasd
-asdfasdfasdfasfda
-asdfasdfasfdas
-asdfasdfasdfasdf
-asdfasfasdfasfadsfadsfasdfadsfa
-asfasdfasd
-asdfasdfafasfasd
-asdfasdasdfasd
-asdfasdfasdfasfda
-asdfasdfasfdas
-asdfasdfasdfasdf
-asdfasfasdfasfadsfadsfasdfadsfa
-asfasdfasd
-asfasdfasd
-					</pre>
-				</section>
+				<section id="logs_page" class="route_page"><pre id="m_log_con" class="fullbleed vertical"></pre></section>
 				<!-- Logs Page }-->
+
 				
-				
-				
-				
-				
-				<!-- ================== Notification and Dialog Components =================={ -->
-				<!-- toast element -->
-				<paper-toast text="Some message" id="m-toast"></paper-toast>
-				<!-- context menu dialog -->
-				<paper-dialog id="m_context_dialog">
-					<div class="m_context_div" data-m-value="Edit">
-						<paper-button>
-							<iron-icon icon="create"></iron-icon> Edit
-						</paper-button>
-					</div>
-					<div class="m_context_div" data-m-value="Delete">
-						<paper-button>
-							<iron-icon icon="delete"></iron-icon> Delete
-						</paper-button>
-					</div>
-				</paper-dialog>	
-				<!-- ========================================================================} -->
-				
+				<!-- Toast Element -->
+				<paper-toast text="Some message" id="m-toast"></paper-toast>							
 			</div>	
 		</paper-header-panel>
 	</paper-drawer-panel>
-	<script>
-	navigator.require('js/Touch.js');
-	root.on('Fakegap', function () {
-		navigator.mod('Fakegap').deviceReady(function () {
-			var phonegap = navigator.mod('Fakegap'),
-				touch = navigator.mod('Touch');
-				
-			phonegap.backButton(function () {
-				alert('back button');
-			});
-			
-			phonegap.menuButton(function () {
-				alert('menu button');
-			});	
-		});
-	});
-	navigator.require('js/Routes.js');
-	root.on('Routes', function (e, routes) {
-		root.on('pagechange', function () {
-				document.getElementById('paperDrawerPanel').closeDrawer();
-				//z('#m_setting_list')[0].select('blah'); // <-- to disable highlighting when clicked
-			})
-			.on('logs_page', function (e, $page) {
-				z('#log_data_con').html($page.data('route_data'));
-			});		
-	});		
-	</script>
+	<script src="js/Fakegap.js"></script>
+	<script src="js/m.Init.js"></script>
 </body>
 </html>

@@ -1,0 +1,44 @@
+<div id="m_month_nav_con" class="flex">						
+	<paper-icon-button id="m_prev_month_button" icon="chevron-left" class="left"></paper-icon-button>
+	<div id="m_list_date_con" class="left">
+		<paper-button id="m_month_changer_button">June 2015 </paper-button>				
+	</div>	
+	<paper-icon-button id="m_next_month_button" icon="chevron-right" class="right"></paper-icon-button>						
+</div>
+<br class="clear">
+<script type="text/html" id="m_list_item_template">
+	<paper-material elevation="3">
+		<div class="m_monthly_list_item" data-m-item_id={item_id}>
+			<paper-icon-button icon="{icon}" class="m_item_status_button"></paper-icon-button>
+			<header>{item_name}</header>
+			<p class="notes">{item_notes}</p>
+		</div>					
+	</paper-material>
+</script>
+<!-- Monthly list items {-->
+<div id="m_list_item_con">			
+	<em class="m_no_items">No items for this month</em>
+</div>
+<!-- Monthly list items }-->
+
+<!-- Add circle button -->				
+<paper-fab icon="add" id="m_add_item_floating_button" role="button"></paper-fab>
+
+<!-- context menu dialog -->
+<paper-dialog id="m_context_dialog">
+	<div class="m_context_div">
+		<paper-button  data-m-context_action="m_add_note">
+			<iron-icon icon="note-add"></iron-icon> Note
+		</paper-button>
+	</div>
+	<div class="m_context_div">
+		<paper-button data-m-context_action="m_edit">
+			<iron-icon icon="create"></iron-icon> Edit
+		</paper-button>
+	</div>
+	<div class="m_context_div">
+		<paper-button data-m-context_action="m_delete">
+			<iron-icon icon="delete"></iron-icon> Delete
+		</paper-button>
+	</div>
+</paper-dialog>	

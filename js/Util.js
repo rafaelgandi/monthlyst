@@ -51,6 +51,14 @@ navigator.define('Util', function (z, undefined) {
 			setTimeout(function () { 
 				self.scrollTo(0, Util.findPos(_elem));
 			}, 0);	
+		},
+		
+		pint: function (_str) {
+			var intValue = parseInt(_str, 10);
+			if (isNaN(intValue)) {
+				return 0;
+			}
+			return intValue;
 		}
 	};
 });

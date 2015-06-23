@@ -1,0 +1,23 @@
+<!-- item input text -->
+<paper-input required label="Monthly item to do" error-message="Oops, no item given"></paper-input>
+
+<div style="margin-top: 13px;">	
+	<!-- repeat type radio buttons -->
+	<paper-radio-group selected="monthly" id="m_repeat_type">
+		<paper-radio-button name="monthly" value="0">Monthly</paper-radio-button>
+		<paper-radio-button name="quarterly" value="1">Quarterly</paper-radio-button>
+	</paper-radio-group>
+	<!-- 
+		Getting the value via js 
+		z('#m_repeat_type').find('paper-radio-button[checked]').attr('value')
+	-->	
+</div>
+				
+<div class="button_divider">
+	<paper-button raised tabindex="0" id="input_item_cancel">
+		<iron-icon icon="clear"></iron-icon>cancel
+	</paper-button>
+	<paper-button raised tabindex="0" id="input_item_ok">
+		<iron-icon icon="check"></iron-icon>ok
+	</paper-button>	
+</div>	
