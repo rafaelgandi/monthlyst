@@ -11,6 +11,9 @@ navigator.define('m\Storage', ['m\Cholog'], function (z, undefined) {
 	self.MONTHLYST_DB.item_details = {};
 	
 	cholog('m\\Storage module has loaded!');
+	// See: http://www.jamescroft.co.uk/blog/web-dev/create-remaining-storage-bar-html5-localstorage/
+	var currentStorageSpace = 1024 * 1024 * 5 - unescape(encodeURIComponent(JSON.stringify(LS))).length; 
+	cholog('Current Storage Space: ' + currentStorageSpace);
 	
 	/* 
 	{

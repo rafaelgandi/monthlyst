@@ -6,7 +6,7 @@ navigator.define('m\Cholog', function (z, undefined) {
 		var con = logCon.innerHTML;
 		logCon.innerHTML = con + nl + '> ' + _msg;
 		if (self.console) {
-			//console[_type](_msg); // TODO enable later
+			console[_type](_msg); // TODO enable later
 		}		
 	};	
 	return { log: cholog };	
