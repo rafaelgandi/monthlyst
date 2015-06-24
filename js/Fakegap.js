@@ -33,7 +33,7 @@ navigator.define('Fakegap', [
 	}
 	
 	function exitApp() {
-		if (window.PhoneGap) {
+		if (navigator.notification !== undefined && navigator.notification.confirm !== undefined) {
 			try {
 				navigator.app.exitApp();
 			}
@@ -42,6 +42,9 @@ navigator.define('Fakegap', [
 				navigator.device.exitApp();
 			}
 			return;
+		}
+		else {
+			cholog('No exit. Your not on mobile.');
 		}
 		//alert('Phonegap Exit triggered');
 	};

@@ -5,6 +5,7 @@
 navigator
 .require('js/m.Cholog.js')
 .require('js/m.Storage.js')
+.require('js/Fakegap.js')
 .require('js/m.Config.js')
 .require('js/TemplateBuilder.js')
 .require('js/Routes.js');
@@ -57,8 +58,14 @@ navigator.define('m\Init', [
 				if (! $currentPage.length) { return; }
 				pageId = $currentPage.attr('id').trim();
 				if (pageId === 'monthly_item_list_page') {
-					alert('exit');
-					fakegap.exit();
+					// Check if the context dialog is hidden
+					if (z('paper-dialog[aria-hidden="true"]').length) { 
+						fakegap.exit();
+					}
+					else {
+						// If dialog is open, then close it //
+						document.getElementById('m_context_dialog').close();
+					}					
 				}
 				else {
 					// Redirect to list page //

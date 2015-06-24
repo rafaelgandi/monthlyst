@@ -1,17 +1,20 @@
 navigator
 .require('js/Routes.js')
 .require('js/m.Storage.js')
-.require('js/m.Toast.js');
+.require('js/m.Toast.js')
+.require('js/m.Config.js');
 
 navigator.define('m\Page\new_item_page', [
 	'Routes', 
 	'm\Storage',
-	'm\Toast'
+	'm\Toast',
+	'm\Config'
 ], function (z, undefined) {	
 	var $root = z(document),
 		routes = navigator.mod('Routes'),
 		storage = navigator.mod('m\Storage'),
 		toast = navigator.mod('m\Toast'),		
+		config = navigator.mod('m\Config'),		
 		$notesField = z('#item_note'),		
 		ITEM_ID,
 		MONTH_TIMESTAMP, 
@@ -37,20 +40,32 @@ navigator.define('m\Page\new_item_page', [
 	});	
 	
 	var Events = {
-		cancelButtonPressed: function (e) {
-			reset();
-			routes.gotoPage('monthly_item_list_page');
-		},
+		cancelButtonPressed: (function () {
+			var cancelButtonTimer;
+			return function (e) {
+				clearTimeout(cancelButtonTimer);
+				setTimeout(function () {
+					reset();
+					routes.gotoPage('monthly_item_list_page');	
+				}, config.actionDelay);				
+			};
+		})(),
 		
-		okButtonPressed: function (e) {
-			storage.saveItemDetails({
-				id: ITEM_ID,
-				monthTimestamp: MONTH_TIMESTAMP,
-				notes: $notesField.get(0).value.trim()
-			});
-			toast.notify('Note added');
-			routes.gotoPage('monthly_item_list_page');							
-		}
+		okButtonPressed: (function () {
+			var okButtonTimer;
+			return function (e) {
+				clearTimeout(okButtonTimer);
+				setTimeout(function () {
+					storage.saveItemDetails({
+						id: ITEM_ID,
+						monthTimestamp: MONTH_TIMESTAMP,
+						notes: $notesField.get(0).value.trim()
+					});
+					toast.notify('Note added');
+					routes.gotoPage('monthly_item_list_page');	
+				}, config.actionDelay);							
+			};
+		})()
 	};
 	
 	// Handle events //
