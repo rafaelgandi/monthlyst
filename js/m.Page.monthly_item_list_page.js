@@ -153,7 +153,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 			return function (e) {
 				var $me = z(this);
 				clearTimeout(monthChangerButtonTimer);
-				monthChangerButtonTimer = setTimeout(function () {					
+				monthChangerButtonTimer = setTimeout(function () {	// Give the button ripple effect time to show in mobile				
 					fakegap.datePicker({
 						date: new Date(),
 						mode: 'date'
@@ -192,17 +192,19 @@ navigator.define('m\Page\monthly_item_list_page', [
 				itemId = $me.attr('data-m-item_id'),
 				action = $me.attr('data-m-context_action');
 			if (action === 'm_delete') { // delete
-				fakegap.confirm({
-					title: 'Delete Item',
-					message: 'Are your sure you want to delete this item?',
-					callback: function (button) {
-						if (button === 2 || button === true) { // If yes
-							deleteItem(itemId);
-						}
-						closeContextDialog();
-					},					
-					buttons: 'Nope,Delete'
-				});
+				setTimeout(function () {
+					fakegap.confirm({
+						title: 'Delete Item',
+						message: 'Are your sure you want to delete this item?',
+						callback: function (button) {
+							if (button === 2 || button === true) { // If yes
+								deleteItem(itemId);
+							}
+							closeContextDialog();
+						},					
+						buttons: 'Nope,Delete'
+					});
+				}, config.actionDelay);		
 			}
 			else if (action === 'm_edit') { // edit
 				setTimeout(function () {
