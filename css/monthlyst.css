@@ -207,19 +207,12 @@ section.route_active_page {
 	margin: 0;
 	padding-bottom: 8px;
 }
-#m_month_changer_button paper-ripple {
+/* #m_month_changer_button paper-ripple {
 	color: #F9CE0D;
-}
+} */
 #m_list_item_con paper-material,
 #m_list_item_con .m_monthly_list_item {
 	border-radius: 3px;
-}
-#monthly_item_list_page hr {
-	width: 277px;
-	margin-bottom: 32px;
-	margin-top: 15px;
-	border:0;
-	border-bottom: 1px solid #EBEBEB;
 }
 
 /* } */

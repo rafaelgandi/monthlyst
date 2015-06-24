@@ -45,11 +45,14 @@ navigator.define('m\Storage', ['m\Cholog'], function (z, undefined) {
 		_data = _data.trim();
 		try { r = JSON.parse(_data); }
 		catch (e) { 
+			cholog(_data);
+			cholog(e.toString());
 			try {
 				eval('r='+_data+';');
 			}
 			catch(lastResort){
 				alert('Unable to import, invalid JSON found.');
+				
 				cholog('INVALID JSON FOUND ON IMPORT');
 				cholog(lastResort.toString());
 				return false;
@@ -132,6 +135,14 @@ navigator.define('m\Storage', ['m\Cholog'], function (z, undefined) {
 		return self.MONTHLYST_DB.items[_id];
 	}
 	
+	function getStringyData() {
+		if (!! LS.getItem(LS_KEY)) {
+			return LS.getItem(LS_KEY);
+		}
+		cholog('localStorage "'+LS_KEY+'" not set yet');
+		return JSON.stringify(self.MONTHLYST_DB);
+	}
+	
 	return { 
 		store: store,
 		clear: clear,
@@ -141,6 +152,7 @@ navigator.define('m\Storage', ['m\Cholog'], function (z, undefined) {
 		saveItemDetails: saveItemDetails,
 		deleteItem: deleteItem,
 		getItemDetailsByIdAndTimestamp: getItemDetailsByIdAndTimestamp,
-		getItemById: getItemById
+		getItemById: getItemById,
+		getStringyData: getStringyData
 	};	
 });

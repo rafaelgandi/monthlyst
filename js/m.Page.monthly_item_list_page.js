@@ -81,7 +81,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 			else {
 				noListItems();
 			}
-			$monthChangerButton.text(date.getMonthName(_month)+' '+_year);
+			$monthChangerButton.find('paper-material').text(date.getMonthName(_month)+' '+_year);
 		}
 		else {
 			noListItems();
@@ -148,15 +148,21 @@ navigator.define('m\Page\monthly_item_list_page', [
 				$me.attr('icon', icons.yes); // did it
 			}
 		},
-		monthChangerButtonPressed: function (e) {
-			var $me = z(this);
-			fakegap.datePicker({
-				date: new Date(),
-				mode: 'date'
-			}, function (d) {				
-				populateList((d.getMonth()+1), d.getFullYear());
-			});
-		},
+		monthChangerButtonPressed: (function () {
+			var monthChangerButtonTimer;
+			return function (e) {
+				var $me = z(this);
+				clearTimeout(monthChangerButtonTimer);
+				monthChangerButtonTimer = setTimeout(function () {					
+					fakegap.datePicker({
+						date: new Date(),
+						mode: 'date'
+					}, function (d) {				
+						populateList((d.getMonth()+1), d.getFullYear());
+					});	
+				}, config.actionDelay);
+			};
+		})(),
 		tapPrevNextButtons: (function () {
 			var tapTimer;
 			return function (e) {
@@ -172,7 +178,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 						var nextDateInfo = date.nextMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
 						populateList(nextDateInfo.month, nextDateInfo.year);
 					}					
-				}, 100);				
+				}, config.actionDelay);				
 			}			
 		})(),
 		longTapItem: function ($me) { // For context dialog
@@ -204,7 +210,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 					routes.gotoPage('new_item_page', {
 						itemId: itemId
 					});			
-				}, 100);				
+				}, config.actionDelay);				
 			}	
 			else { // add note
 				setTimeout(function () {
@@ -213,7 +219,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 						itemId: itemId,
 						monthTimestamp: MONTH_TIMESTAMP
 					});
-				}, 100);			
+				}, config.actionDelay);			
 			}
 		}
 	};

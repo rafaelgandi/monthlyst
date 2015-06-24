@@ -35,21 +35,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	</style>
 </head>
 <body unresolved class="fullbleed layout vertical">
-	<!-- See: https://www.polymer-project.org/0.5/docs/elements/core-drawer-panel.html -->
+	<!-- See: https://elements.polymer-project.org/browse?package=paper-elements -->
 	<paper-drawer-panel id="paperDrawerPanel">	
 		<paper-header-panel drawer>
 			<div drawer>
 				<!-- Drawer Toolbar -->
 				<paper-toolbar id="drawer_toolbar" class="medium-tall">
-					<span class="title">Monthlyst</span>
+					<span class="title bottom">Monthlyst</span>
 				</paper-toolbar>
 				<!-- Drawer Content -->
 				<paper-menu id="m_setting_list">
 					<paper-item role="menuitem" data-route="monthly_item_list_page">List</paper-item>
 					<paper-item role="menuitem" data-route="about_page">About</paper-item>
 					<paper-item role="menuitem" data-route="logs_page" data-route_data="this is logs data">Logs</paper-item>
-					<paper-item role="menuitem">Backup</paper-item>
-					<paper-item role="menuitem">Restore</paper-item>
+					<paper-item role="menuitem" id="m_backup_button">Backup</paper-item>
+					<paper-item role="menuitem" id="m_restore_button">Restore</paper-item>
 				</paper-menu>
 			</div>	
 		</paper-header-panel>	

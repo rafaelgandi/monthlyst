@@ -43,7 +43,7 @@ navigator.define('Fakegap', [
 			}
 			return;
 		}
-		alert('Phonegap Exit triggered');
+		//alert('Phonegap Exit triggered');
 	};
 	
 	function confirm(_o) {
@@ -100,6 +100,7 @@ navigator.define('Fakegap', [
 		bindMenuButton: menuButton,
 		confirm: confirm,
 		datePicker: datePicker,
-		exit: exitApp
+		exit: exitApp,
+		isMobile: (!! window.PhoneGap)
 	};
 });

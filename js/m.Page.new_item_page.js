@@ -3,6 +3,7 @@ navigator
 .require('js/m.Storage.js')
 .require('js/m.Toast.js')
 .require('js/m.Date.js')
+.require('js/m.Config.js')
 .require('js/Util.js');
 
 navigator.define('m\Page\new_item_page', [
@@ -10,6 +11,7 @@ navigator.define('m\Page\new_item_page', [
 	'm\Storage',
 	'm\Toast',
 	'm\Date',
+	'm\Config',
 	'Util'
 ], function (z, undefined) {	
 	var $root = z(document),
@@ -17,6 +19,7 @@ navigator.define('m\Page\new_item_page', [
 		storage = navigator.mod('m\Storage'),
 		toast = navigator.mod('m\Toast'),
 		date = navigator.mod('m\Date'),
+		config = navigator.mod('m\Config'),
 		util = navigator.mod('Util'),
 		$page = z('#new_item_page'),
 		$okButton = z('#input_item_ok'),
@@ -63,22 +66,34 @@ navigator.define('m\Page\new_item_page', [
 	});	
 	
 	var Events = {
-		cancelButtonPressed: function (e) {
-			reset();
-			routes.gotoPage('monthly_item_list_page');
-		},
+		cancelButtonPressed: (function () {
+			var cancelButtonTimer;
+			return function (e) {
+				clearTimeout(cancelButtonTimer);				
+				setTimeout(function () {
+					reset();
+					routes.gotoPage('monthly_item_list_page');
+				}, config.actionDelay);				
+			};
+		})(),
 		
-		okButtonPressed: function (e) {
-			if (! validate()) { return; }		
-			var values = getFormValues();
-			storage.saveItem({
-				id: (!! ITEM_ID) ? ITEM_ID : date.getCurrentTimestamp(),
-				name: values.itemName,
-				repeatType: values.repeatType
-			});
-			toast.notify((!! ITEM_ID) ? 'Item updated' : 'New item added');
-			routes.gotoPage('monthly_item_list_page');							
-		}
+		okButtonPressed: (function () {
+			var okButtonTimer;
+			return function (e) {
+				clearTimeout(okButtonTimer);	
+				if (! validate()) { return; }
+				setTimeout(function () {
+					var values = getFormValues();
+					storage.saveItem({
+						id: (!! ITEM_ID) ? ITEM_ID : date.getCurrentTimestamp(),
+						name: values.itemName,
+						repeatType: values.repeatType
+					});
+					toast.notify((!! ITEM_ID) ? 'Item updated' : 'New item added');
+					routes.gotoPage('monthly_item_list_page');
+				}, config.actionDelay);		
+			};
+		})()
 	};
 	
 	// Handle events //

@@ -48,7 +48,31 @@ navigator.define('m\Init', [
 	// Device ready //	
 	fakegap.deviceReady(function () {				
 		cholog('deviceready event fired!');
-		navigator.require('js/m.Interactions.js');		
+		navigator.require('js/m.UpperRightMenu.js');
+		navigator.require('js/m.BackupRestore.js');
+		var phonegapEvents = {
+			backButton: function () {
+				var $currentPage = z('.route_active_page'),
+					pageId;
+				if (! $currentPage.length) { return; }
+				pageId = $currentPage.attr('id').trim();
+				if (pageId === 'monthly_item_list_page') {
+					alert('exit');
+					fakegap.exit();
+				}
+				else {
+					// Redirect to list page //
+					routes.gotoPage('monthly_item_list_page');
+				}
+			},
+			menuButton: function () {
+				document.getElementById('paperDrawerPanel').openDrawer();
+			}
+		};
+		
+		// Phonegap Events //
+		fakegap.bindBackButton(phonegapEvents.backButton);
+		fakegap.bindMenuButton(phonegapEvents.menuButton);			
 	});
 	
 	$root.on('pagechange', function () {

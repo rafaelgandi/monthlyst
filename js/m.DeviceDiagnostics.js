@@ -1,7 +1,7 @@
 
 navigator.require('js/m.Cholog.js');
 navigator.define('m\DeviceDiagnostics', ['m\Cholog'], function (z, undefined) {	
-	var device = device || {};
+	//var device = device || {};
 	function diagnose() {		
 		// Device diagnostics //
 		try {
