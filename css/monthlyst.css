@@ -24,13 +24,13 @@ body {
 
 #main_toolbar, #drawer_toolbar {
 	color: #fff;
-	fill: #fff;
-	/* background-color: #FDD835; */
+	fill: #fff;	
+}
+#main_toolbar {
 	background-color: #FFC107;
 }
-
-paper-header-panel {
-	/* background-color: #fff; */
+#drawer_toolbar {
+	background-color: #e5ae08;
 }
 
 #content {
@@ -104,7 +104,8 @@ section.route_active_page {
 }
 
 #mainContainer {
-	background-color: #F7F7F7;
+	/* background-color: #F7F7F7; */
+	background-color: #EBEFF2;
 }
 
 #m_dropdown_menu {
@@ -170,8 +171,8 @@ section.route_active_page {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	position: relative;
-	-webkit-transition: all 0.40s linear 0s;
-	transition: all 0.40s linear 0s;
+	-webkit-transition: all 0.20s linear 0s;
+	transition: all 0.20s linear 0s;
 	background-color: #fff;
 }
 .m_monthly_list_item paper-icon-button {

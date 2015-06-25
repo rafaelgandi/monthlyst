@@ -37,7 +37,7 @@ navigator.define('m\UpperRightMenu', [
 		return true;
 	});
 	
-	$root.on('tap', '#m_dropdown_menu_button', show);
+	$root.on('touchstart', '#m_dropdown_menu_button', show);
 	$root.on('touchend', '#m_dropdown_menu div', function () {
 		var $me = z(this);
 		if ($me.attr('data-m-value') === 'about') {

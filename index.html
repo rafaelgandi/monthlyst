@@ -31,7 +31,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		}
 		:root {
 			--paper-input-container-focus-color: var(--paper-orange-500);
-		}		
+		}
+		.icon_big {
+			--iron-icon-height: 32px;
+			--iron-icon-width: 32px;
+		}
 	</style>
 </head>
 <body unresolved class="fullbleed layout vertical">
@@ -41,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			<div drawer>
 				<!-- Drawer Toolbar -->
 				<paper-toolbar id="drawer_toolbar" class="medium-tall">
-					<span class="title bottom">Monthlyst</span>
+					<span class="title bottom">Monthlyst <iron-icon class="icon_big" src="icon.png"></iron-icon></span>
 				</paper-toolbar>
 				<!-- Drawer Content -->
 				<paper-menu id="m_setting_list">
