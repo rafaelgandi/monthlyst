@@ -200,7 +200,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 						var nextDateInfo = date.nextMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
 						populateList(nextDateInfo.month, nextDateInfo.year);
 					}					
-				}, config.actionDelay);				
+				}, 100);				
 			}			
 		})(),
 		longTapItem: function ($me) { // For context dialog
