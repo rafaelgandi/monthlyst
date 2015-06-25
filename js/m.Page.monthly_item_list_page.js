@@ -60,23 +60,40 @@ navigator.define('m\Page\monthly_item_list_page', [
 		MONTH_TIMESTAMP = monthTimestamp;
 		if (typeof self.MONTHLYST_DB !== 'undefined' && ! util.isEmptyObject(self.MONTHLYST_DB.items)) {
 			items = self.MONTHLYST_DB.items;
-			itemDetails = self.MONTHLYST_DB.item_details;
+			itemDetails = self.MONTHLYST_DB.item_details,
+			done = false;
 			for (var p in items) {
 				tempItemDetails = (itemDetails[p] && itemDetails[p][monthTimestamp]) ? itemDetails[p][monthTimestamp] : undefined;							
 				if (util.pint(items[p].repeat_type) === 1) { // Quarterly
 					if (z.inArray(_month, config.quarterlyMonths) < 0) {						
 						continue;
 					}
-				}				
+				}
+				done = (!!tempItemDetails && tempItemDetails.status !== undefined && util.pint(tempItemDetails.status) === 1)
 				html.push(builder.tpl(listItemTemplate, {
 					'item_id': p,
-					'icon': (!!tempItemDetails && tempItemDetails.status !== undefined && util.pint(tempItemDetails.status) === 1) ? icons.yes : icons.no,
+					'icon': (done) ? icons.yes : icons.no,
+					'status_class': (done) ? 'yes' : 'no',
 					'item_name': items[p].name,
 					'item_notes': (!!tempItemDetails && !!tempItemDetails.notes) ? tempItemDetails.notes : ''
 				}));
 			}
 			if (html.length) {
 				$listItemsCon.html(html.reverse().join(''));
+				// helpout with the layout //
+				// TODO: maybe change this later
+				$listItemsCon.find('.notes').each(function () {
+					var $me = z(this);
+					if ($me.text().trim() === '') {
+						$me.parent().find('header').addClass('no_notes');
+					}
+				});
+				setTimeout(function () {
+					$listItemsCon.find('.m_monthly_list_item').css({
+						marginBottom: '10px'
+					});	
+				}, 10);
+				
 			}
 			else {
 				noListItems();
@@ -138,6 +155,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 					status: 0
 				});
 				$me.attr('icon', icons.no); // failed :(
+				$parentDiv.removeClass('yes').addClass('no')
 			}
 			else {
 				storage.saveItemDetails({
@@ -146,6 +164,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 					status: 1
 				});
 				$me.attr('icon', icons.yes); // did it
+				$parentDiv.removeClass('no').addClass('yes')
 			}
 		},
 		monthChangerButtonPressed: (function () {
@@ -168,6 +187,9 @@ navigator.define('m\Page\monthly_item_list_page', [
 			return function (e) {
 				var $me = z(this),
 					isPrev = (this.id.indexOf('prev') > -1);
+				z('.m_monthly_list_item').css({
+					opacity: 0
+				});	
 				clearTimeout(tapTimer);	
 				tapTimer = setTimeout(function () { // Give the button ripple effect time to show in mobile
 					if (isPrev) { // prev button pressed

@@ -84,7 +84,7 @@ navigator.define('m\Init', [
 	
 	$root.on('pagechange', function () {
 		document.getElementById('paperDrawerPanel').closeDrawer();
-		//z('#m_setting_list')[0].select('blah'); // <-- to disable highlighting when clicked
+		z('#m_setting_list')[0].select('blah'); // <-- to disable highlighting when clicked
 	});
 	return {init:true};	
 });

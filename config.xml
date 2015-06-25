@@ -30,7 +30,7 @@
 	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 	<!-- LM: 05-11-2015 -->
 	<!-- See: https://github.com/apache/cordova-plugin-statusbar/tree/bdbaf129595c4a4e3d957a1bc218d05dc5f82a9e -->
-	<preference name="StatusBarBackgroundColor" value="#FFC107" />
+	<preference name="StatusBarBackgroundColor" value="#E5AE08" />
 	
 	<!-- Splash screen -->
 	<gap:splash src="splash/splashscreen.png" gap:platform="android" gap:density="ldpi" />
