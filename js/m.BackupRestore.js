@@ -25,7 +25,8 @@ navigator.define('m\BackupRestore', [
 			FILE_ENTRY: 0,
 		},
 		writeBackUp = function (_a, _b) { cholog('writeBackUp() nothing'); }, // backup
-		readBackUp = function (_a) { cholog('readBackUp() nothing'); };	// restore
+		readBackUp = function (_a) { cholog('readBackUp() nothing'); }, // restore
+		drawerMenu = z('#m_setting_list')[0]; 	
 	
 	cholog('Backup and Restore module loaded');
 	cholog('Preparing file system...');
@@ -52,6 +53,8 @@ navigator.define('m\BackupRestore', [
 				title: 'Backup',
 				buttons: 'Nope,Backup'
 			});	
+			// Disable highlighting when clicked //
+			drawerMenu.select('blah'); 
 		},
 		restoreButtonPressed: function () {
 			fakegap.confirm({
@@ -85,7 +88,9 @@ navigator.define('m\BackupRestore', [
 				},
 				title: 'Restore',
 				buttons: 'Nope,Restore'
-			});	
+			});
+			// Disable highlighting when clicked //
+			drawerMenu.select('blah'); 
 		}
 	};
 	

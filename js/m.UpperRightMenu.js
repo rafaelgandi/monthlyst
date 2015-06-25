@@ -1,15 +1,18 @@
 navigator
 .require('js/m.Cholog.js')
+.require('js/m.Config.js')
 .require('js/Routes.js')
 .require('js/Fakegap.js');
 
 navigator.define('m\UpperRightMenu', [
 	'm\Cholog',
+	'm\Config',
 	'Routes',
 	'Fakegap'
 ], function (z, undefined) {	
 	var $root = z(document),
 		$menuCon = z('#m_dropdown_menu'),
+		config = navigator.mod('m\Config'),
 		routes = navigator.mod('Routes'),
 		fakegap = navigator.mod('Fakegap'),
 		IS_VISIBLE = false;
@@ -40,7 +43,11 @@ navigator.define('m\UpperRightMenu', [
 		if ($me.attr('data-m-value') === 'about') {
 			routes.gotoPage('about_page');
 		}
-		else { fakegap.exit(); }
+		else { 
+			setTimeout(function () {
+				fakegap.exit();
+			}, config.actionDelay);			
+		}
 		hide();
 	});
 	

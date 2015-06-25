@@ -170,10 +170,9 @@ section.route_active_page {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	position: relative;
-	-webkit-transition: all 0.20s linear 0s;
-	transition: all 0.20s linear 0s;
+	-webkit-transition: all 0.40s linear 0s;
+	transition: all 0.40s linear 0s;
 	background-color: #fff;
-	margin-bottom: -75px;
 }
 .m_monthly_list_item paper-icon-button {
 	position: absolute;
@@ -219,9 +218,6 @@ section.route_active_page {
 	padding-bottom: 8px;
 }
 
-/* #m_month_changer_button paper-ripple {
-	color: #F9CE0D;
-} */
 #m_list_item_con paper-material,
 #m_list_item_con .m_monthly_list_item {
 	border-radius: 3px;

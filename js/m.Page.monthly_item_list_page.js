@@ -88,12 +88,6 @@ navigator.define('m\Page\monthly_item_list_page', [
 						$me.parent().find('header').addClass('no_notes');
 					}
 				});
-				setTimeout(function () {
-					$listItemsCon.find('.m_monthly_list_item').css({
-						marginBottom: '10px'
-					});	
-				}, 10);
-				
 			}
 			else {
 				noListItems();
@@ -200,7 +194,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 						var nextDateInfo = date.nextMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
 						populateList(nextDateInfo.month, nextDateInfo.year);
 					}					
-				}, 100);				
+				}, 300);				
 			}			
 		})(),
 		longTapItem: function ($me) { // For context dialog
