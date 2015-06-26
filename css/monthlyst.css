@@ -255,3 +255,38 @@ section.route_active_page {
 	padding-top: 30px;
 }
 /* Add notes Page } */
+
+
+/* About Page { */
+#about_page {
+	text-align: center;
+}
+#about_page img {
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 15px;
+}
+#about_page p {
+	color: #A6A6A6;
+	font-size: 13px;
+	padding-top: 35px;
+}
+#about_page .label {
+	color: #5A5A5A;
+	font-size: 13px;
+	display: block;
+	padding-top: 25px;
+	padding-bottom: 4px;
+	font-weight: bold;
+}
+#props {
+	font-size: 12px;
+	color: #9D9D9D;
+	margin-top: 0;
+	padding-top: 0;
+	display: block;
+}
+/* About Page } */
+

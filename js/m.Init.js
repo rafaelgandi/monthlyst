@@ -14,11 +14,13 @@ navigator.define('m\Init', [
 	'm\Cholog',
 	'm\Storage',
 	'Fakegap',
+	'm\Config',
 	'Routes',
 	'TemplateBuilder'
 ], function (z, undefined) {		
 	var $root = z(document),
 		fakegap = navigator.mod('Fakegap'),
+		config = navigator.mod('m\Config'),
 		routes = navigator.mod('Routes'),
 		builder = navigator.mod('TemplateBuilder'),
 		storage = navigator.mod('m\Storage');
@@ -34,7 +36,16 @@ navigator.define('m\Init', [
 	.ajaxBuild('templates/list_page.html', '#monthly_item_list_page', function () {
 		navigator.require('js/m.Page.monthly_item_list_page.js');
 	})
-	.ajaxBuild('templates/about_page.html', '#about_page')
+	.ajaxBuild('templates/about_page.html', '#about_page', function (html) {
+		var newHTML = builder.tpl(html, {
+			'app_name': config.appName,
+			'author': config.appAuthor,
+			'app_version': config.appVersion,
+			'app_build': config.appBuild,
+			'app_year': config.appYear
+		});
+		z('#about_page').html(newHTML);
+	})
 	.ajaxBuild('templates/input_monthly_item.page.html', '#new_item_page', function () {
 		navigator.require('js/m.Page.new_item_page.js');
 	})

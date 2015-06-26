@@ -180,10 +180,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 			var tapTimer;
 			return function (e) {
 				var $me = z(this),
-					isPrev = (this.id.indexOf('prev') > -1);
-				z('.m_monthly_list_item').css({
-					opacity: 0
-				});	
+					isPrev = (this.id.indexOf('prev') > -1);				
 				clearTimeout(tapTimer);	
 				tapTimer = setTimeout(function () { // Give the button ripple effect time to show in mobile
 					if (isPrev) { // prev button pressed
@@ -194,7 +191,7 @@ navigator.define('m\Page\monthly_item_list_page', [
 						var nextDateInfo = date.nextMonth(MONTH_YEAR_INFO.month, MONTH_YEAR_INFO.year);
 						populateList(nextDateInfo.month, nextDateInfo.year);
 					}					
-				}, 200);				
+				}, config.actionDelay);				
 			}			
 		})(),
 		longTapItem: function ($me) { // For context dialog
