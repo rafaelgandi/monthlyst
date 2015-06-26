@@ -29,8 +29,8 @@
 	<!-- See: http://detlefsendev.dk/phonegap-3-4-0-file-system-access/ -->
 	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 	<!-- LM: 05-11-2015 -->
-	<!-- See: https://github.com/apache/cordova-plugin-statusbar/tree/bdbaf129595c4a4e3d957a1bc218d05dc5f82a9e -->
-	<preference name="StatusBarBackgroundColor" value="#E5AE08" />
+	<!-- See: https://www.npmjs.com/package/cordova-plugin-statusbar -->
+	<preference name="StatusBarBackgroundColor" value="#E4AC10" />
 	
 	<!-- Splash screen -->
 	<gap:splash src="splash/splashscreen.png" gap:platform="android" gap:density="ldpi" />
@@ -53,7 +53,6 @@
 	<!-- See: https://github.com/InformationLogisticsTeam/cordova-plugin-datepicker/blob/31cded7/README.md -->
 	<gap:plugin name="za.co.informationlogisitics.phonegap.datepicker" version="0.3.0" />
 	<!-- Status bar plugin -->
-	<!-- See: https://build.phonegap.com/plugins/715 -->
-	<!-- See: https://github.com/apache/cordova-plugin-statusbar/tree/bdbaf129595c4a4e3d957a1bc218d05dc5f82a9e -->
-	<gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
+	<!-- See: https://www.npmjs.com/package/cordova-plugin-statusbar -->
+	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 </widget>

@@ -60,6 +60,11 @@ navigator.define('m\Init', [
 	// Device ready //	
 	fakegap.deviceReady(function () {				
 		cholog('deviceready event fired!');
+		if (window.StatusBar) {
+			cholog('window.StatusBar alive!');
+			cholog('setting StatusBar color to #E4AC10');
+			StatusBar.backgroundColorByHexString('#E4AC10');
+		}
 		navigator.require('js/m.UpperRightMenu.js');
 		navigator.require('js/m.BackupRestore.js');
 		var phonegapEvents = {
