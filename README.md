@@ -1,4 +1,4 @@
-# monthlyst
+# Monthlyst :squirrel:
 My simple personal monthly todo list app. Done using google's Polymer project material design ui and Phonegap.
 
 <div align="center">
