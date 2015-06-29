@@ -25,7 +25,7 @@ navigator.define('m\Init', [
 		builder = navigator.mod('TemplateBuilder'),
 		storage = navigator.mod('m\Storage');
 	self.onerror = function (_errMsg, _url, _lineNum) {
-		// LM: 09-30-2014 [Also log js errors]
+		// Also log js errors
 		// See: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers.onerror
 		cholog('JSERROR: "'+_errMsg+'" on '+_url+' @line: '+_lineNum);
 		//return false;
